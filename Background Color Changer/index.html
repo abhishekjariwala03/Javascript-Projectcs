@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Changer</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      .container {
+        height: 400px;
+        width: 600px;
+        background-color: rgb(188, 184, 184);
+        box-shadow: 2px 5px 6px black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        /* display: flex;
+        justify-content: space-evenly;
+        align-items: center; */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        border-radius: 20px;
+      }
+
+      #c1 {
+        height: 100px;
+        width: 100px;
+        background-color: rgb(48, 88, 88);
+        margin: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      #c2 {
+        height: 100px;
+        width: 100px;
+        background-color: rgb(239, 228, 228);
+        margin: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      #c3 {
+        height: 100px;
+        width: 100px;
+        background-color: rgb(125 126 153);
+        margin: auto;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Click On Box To Change The Background Color</h1>
+
+    <div class="container">
+      <div class="color" id="c1"></div>
+      <div class="color" id="c2"></div>
+      <div class="color" id="c3"></div>
+      <div class="color" id="c4"></div>
+      <button class="btn">Normal</button>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll(".color");
+      const body = document.querySelector("body");
+      const btn = document.querySelector(".btn");
+
+      buttons.forEach((e) => {
+        e.addEventListener("click", (jo) => {
+          if (jo.target.id === "c1") {
+            body.style.backgroundColor = "rgb(48, 88, 88)";
+          } else if (jo.target.id === "c2") {
+            body.style.backgroundColor = "rgb(239, 228, 228)";
+          } else if (jo.target.id === "c3") {
+            body.style.backgroundColor = "rgb(125 126 153)";
+          }
+        });
+
+        btn.addEventListener("click", (o) => {
+          body.style.backgroundColor = "";
+        });
+      });
+    </script>
+  </body>
+</html>
