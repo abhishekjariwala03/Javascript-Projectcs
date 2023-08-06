@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <style>
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 400px;
+        width: 400px;
+        border-radius: 10px;
+        background-color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      p {
+        font-size: 15pt;
+        font-weight: 900;
+      }
+      button {
+        padding: 5px;
+        cursor: pointer;
+        width: 4rem;
+      }
+      li {
+        list-style: circle;
+        cursor: pointer;
+        margin-top: 5px;
+        font-weight: 700;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Quiz App</h2>
+      <p id="question"></p>
+      <ul id="choice"></ul>
+      <button id="btn">Skip</button>
+      <p id="score">Score : 0</p>
+    </div>
+
+    <script>
+      const questionsArray = [
+        {
+          question: "What does HTML stand for?",
+          choices: [
+            "Hyper Text Markup Language",
+            "Hyper Tag Markup Language",
+            "Hyperlinks Text Mark Language",
+            "Hyperlinking Text Marking Language",
+          ],
+          answer: "Hyper Text Markup Language",
+        },
+        {
+          question: "What symbol indicates a tag?",
+          choices: [
+            "Angle brackets",
+            "Curved brackets",
+            "Commas ",
+            "Exclamation marks",
+          ],
+          answer: "Angle brackets",
+        },
+        {
+          question: "Choose the correct HTML tag for the largest heading",
+          choices: ["<heading>", "<h6>", "<head>", "<h1/>"],
+
+          answer: "<h1/>",
+        },
+        {
+          question:
+            "What is the correct HTML tag for inserting a line break ? ",
+          choices: ["<br>", "<lb>", "<break>", "Other"],
+          answer: "<br>",
+        },
+      ];
+
+      let currentQuestion = 0;
+      let score = 0;
+
+      let que = document.getElementById("question");
+      let choiceElem = document.getElementById("choice");
+      let btn = document.getElementById("btn");
+      let scoreElem = document.getElementById("score");
+
+      const showQuestion = () => {
+        const question = questionsArray[currentQuestion];
+        que.textContent = question.question; // Get question from questionsArray
+        choiceElem.innerHTML = "";
+
+        question.choices.forEach((choice) => {
+          const li = document.createElement("li");
+          li.textContent = choice;
+          li.addEventListener("click", checkAnswer);
+          choiceElem.appendChild(li);
+        });
+      };
+
+      const checkAnswer = (e) => {
+        const selectedChoice = e.target.textContent;
+        const correctAnswer = questionsArray[currentQuestion].answer;
+
+        if (selectedChoice == correctAnswer) {
+          score++;
+        }
+
+        currentQuestion++;
+        if (currentQuestion < questionsArray.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      };
+
+      const showResult = () => {
+        que.textContent = "Quiz Completed!!";
+        choiceElem.innerHTML = "";
+        btn.innerHTML = "Restart";
+        scoreElem.textContent =
+          "Your Score is : " + score + " out of " + questionsArray.length;
+
+        if (btn.innerHTML == "Restart") {
+          btn.addEventListener("click", () => {
+            window.location.reload();
+          });
+        }
+      };
+
+      showQuestion();
+      btn.addEventListener("click", checkAnswer);
+    </script>
+  </body>
+</html>

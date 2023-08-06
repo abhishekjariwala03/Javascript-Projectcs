@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Number Genrator</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        height: 200px;
+        width: 500px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: lavender;
+        box-shadow: 0 5px 5px black;
+      }
+      h4 {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      button {
+        margin: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Your Random Number is : <span class="number"></span></h1>
+      <h4>Click This button to generate random number between 1 to 100.</h4>
+      <button id="btn">Click Me</button>
+    </div>
+  </body>
+
+  <script>
+    let btn = document.getElementById("btn");
+    let number = document.querySelector(".number");
+
+    btn.addEventListener("click", () => {
+      alert(`Your Random Number Is : ${Math.floor(Math.random() * 100)}`); // Generate Random Number and multiplay it with 100 for get numbers between 0 to 100
+      // number.innerHTML = `${Math.floor(Math.random() * 100)}`;
+    });
+  </script>
+</html>

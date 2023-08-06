@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        position: absolute;
+        height: 300px;
+        width: 700px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(45deg, black, transparent);
+      }
+
+      img {
+        width: 200px;
+        opacity: 0.5;
+      }
+
+      button {
+        padding: 8px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .active {
+        border: 5px solid white;
+        width: 230px;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>Image Slider</header>
+      <div class="images">
+        <img
+          src="https://images.unsplash.com/photo-1619115445441-d6e75309000d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          alt="img1"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
+          alt="img2"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
+          alt="img3"
+        />
+      </div>
+      <div class="buttons">
+        <button class="prev" type="submit"><-Prev</button>
+        <button class="next" type="submit">Next-></button>
+      </div>
+    </div>
+
+    <script>
+      let currentIndex = 1; // Assume that first image is active
+      let prev = document.querySelector(".prev");
+      let next = document.querySelector(".next");
+      let images = document.querySelectorAll(".images img");
+
+      const showImage = (index) => {
+        images.forEach((image) => {
+          image.classList.remove("active"); // Firstly removing actice class from all images using for each loop
+        });
+
+        images[index].classList.add("active"); // Adding active class in active image which have index
+      };
+
+      prev.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+      });
+
+      next.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+      });
+
+      showImage(currentIndex);
+    </script>
+  </body>
+</html>

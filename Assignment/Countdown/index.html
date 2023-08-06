@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown</title>
+    <style>
+      .container {
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(249, 248, 248);
+        box-shadow: 0px 5px 10px black;
+      }
+      button {
+        padding: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+      #countdownValue {
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="countdown">
+        <div id="countdownValue">10</div>
+        <button id="btn" onclick="setCountdown()">Start</button>
+      </div>
+    </div>
+    <script>
+      const setCountdown = () => {
+        let btn = document.querySelector("#btn");
+        let countdownValue = 10;
+        const countdownDisplay = document.getElementById("countdownValue");
+
+        const countDown = setInterval(() => {
+          countdownDisplay.textContent = countdownValue;
+          countdownValue--;
+
+          if (countdownValue < 0) {
+            clearInterval(countDown);
+            alert("Time's Up...!");
+          }
+        }, 1000);
+
+        btn.innerHTML = "Timer is running";
+      };
+    </script>
+  </body>
+</html>
