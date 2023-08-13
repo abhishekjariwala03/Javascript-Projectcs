@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.getElementById("multi").addEventListener("click", () => {
-          input.value += "x";
+          input.value += "*";
         });
 
         document.getElementById("sub").addEventListener("click", () => {
