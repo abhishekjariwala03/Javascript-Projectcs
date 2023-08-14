@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <style>
+      body {
+        background-color: #6676d4;
+      }
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 200px;
+        width: 200px;
+        background-color: #6868c8;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      span {
+        font-size: 2rem;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      .buttons {
+        margin-top: 10px;
+      }
+      button {
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span id="display">00:00:00:00</span>
+      <div class="buttons">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+      </div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+      let startBtn = document.getElementById("start");
+      let stopBtn = document.getElementById("stop");
+      let resetBtn = document.getElementById("reset");
+      let timer = false;
+      let timerInterval;
+      let hour = 0;
+      let min = 0;
+      let sec = 0;
+      let counter = 0;
+
+      startBtn.addEventListener("click", () => {
+        if (!timer) {
+          timer = true;
+          timerInterval = setInterval(showTime, 10);
+        } else {
+          timer = false;
+          clearInterval(timerInterval);
+        }
+      });
+
+      stopBtn.addEventListener("click", () => {
+        timer = false;
+        clearInterval(timerInterval);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        timer = false;
+        clearInterval(timerInterval);
+        hour = 0;
+        min = 0;
+        sec = 0;
+        counter = 0;
+
+        display.innerHTML = "00:00:00:00";
+      });
+
+      const showTime = () => {
+        if (timer) {
+          counter++;
+
+          if (counter == 100) {
+            sec++;
+            counter = 0;
+          }
+          if (sec == 60) {
+            min++;
+            sec = 0;
+          }
+          if (min == 60) {
+            hour++;
+            min = 0;
+            sec = 0;
+          }
+
+          let hrString = hour < 10 ? "0" + hour : hour;
+          let minString = min < 10 ? "0" + min : min;
+          let secString = sec < 10 ? "0" + sec : sec;
+          let countString = counter < 10 ? "0" + counter : counter;
+
+          display.innerHTML = `${hrString}:${minString}:${secString}:${countString}`;
+        }
+      };
+    </script>
+  </body>
+</html>
