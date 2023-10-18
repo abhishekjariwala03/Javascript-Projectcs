@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Select State To See All cities</h3>
+          <select
+            id="state"
+            class="form-select sm"
+            aria-label="Default select example"
+          >
+            <option selected>Open this select menu</option>
+            <option value="Bhavnagar">Bhavnagar</option>
+            <option value="Surat">Surat</option>
+            <option value="Anand">Anand</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <h3>Cities According To Your State</h3>
+          <select
+            id="city"
+            class="form-select sm"
+            aria-label="Default select example"
+          ></select>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      const DataArray = {
+        Bhavnagar: [
+          "Sidsar Census Town",
+          "Vartej Census Town",
+          "Nari Census Town",
+        ],
+        Surat: ["Vasu", "Udhna", "Rander", "xyz"],
+        Anand: ["Bakrol", "Vithhal Udyog Nagar", "Petlad", "Karamsad"],
+      };
+
+      $(document).ready(function () {
+        $("#state").change(function () {
+          const selectedState = $(this).val();
+          const cities = DataArray[selectedState] || [];
+
+          const cityDropdown = $("#city");
+          cityDropdown.empty();
+
+          cityDropdown.append(
+            $("<option disabled selected>").text("Select City")
+          );
+
+          $.each(cities, function (key, value) {
+            cityDropdown.append($("<option>").attr("value", value).text(value));
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

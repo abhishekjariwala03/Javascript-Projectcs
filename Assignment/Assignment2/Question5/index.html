@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Validation Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <form id="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Enter Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputname1"
+          aria-describedby="emailHelp"
+          placeholder="Enter Your Name"
+        />
+        <small id="namemsg" class="form-text text-muted"
+          ><p style="color: red">Name Can not be empty!!!</p></small
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail2"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+        />
+        <small id="emailmsg" class="form-text text-muted"
+          ><p style="color: red">Email Can not be empty!!!</p></small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+        />
+        <small id="passwordmsg" class="form-text text-muted"
+          ><p style="color: red">Password Can not be empty!!!</p></small
+        >
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#namemsg").hide();
+        $("#emailmsg").hide();
+        $("#passwordmsg").hide();
+
+        $("#exampleInputname1").on("input", function () {
+          let name = $(this).val();
+
+          if (name.length <= 0) {
+            $("#namemsg").show();
+          } else {
+            $("#namemsg").hide();
+          }
+        });
+
+        $("#exampleInputEmail2").on("input", function () {
+          let email = $(this).val();
+
+          if (email.length <= 0) {
+            $("#emailmsg").show();
+          } else {
+            $("#emailmsg").hide();
+          }
+        });
+
+        $("#exampleInputPassword1").on("input", function () {
+          let password = $(this).val();
+
+          if (passsword.length <= 0) {
+            $("#passwordmsg").show();
+          } else {
+            $("#passwordmsg").hide();
+          }
+        });
+
+        $("#form").submit(function (e) {
+          e.preventDefault();
+          let userName = $("#exampleInputname1").val();
+          let userEmail = $("#exampleInputEmail2").val();
+          let userPassword = $("#exampleInputPassword1").val();
+
+          if (userName.length <= 0) {
+            $("#namemsg").show();
+          } else {
+            $("#namemsg").hide();
+          }
+
+          if (userEmail.length <= 0) {
+            $("#emailmsg").show();
+          } else {
+            var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+
+            if (!pattern.test(userEmail)) {
+              alert("Wrong Email");
+            } else {
+              console.log("valid Email Address");
+              alert(`Name is : ${userVal} and email is : ${userEmail}`);
+            }
+            $("#emailmsg").hide();
+          }
+
+          if (userPassword.length <= 0) {
+            $("#passwordmsg").show();
+          } else {
+            $("#passwordmsg").hide();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
